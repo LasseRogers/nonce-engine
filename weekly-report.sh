@@ -11,11 +11,12 @@ TOTAL="$(grep -oP 'thread \d+: \K\d+(?= hashes)' <<<"$LOG" | awk '{s+=$1} END {p
 SPEED="$(grep -oP '[\d.]+(?= khash/s)' <<<"$LOG" | awk -v t="$THREADS" '{s+=$1; n++} END {if (n) printf "%.0f", s/n*t; else print 0}')"
 ACCEPTED="$(grep -c 'accepted' <<<"$LOG" || true)"
 WEEK="$(date +%V)"
+YEAR="$(date +%G)"
 STATUS="$(systemctl is-active nonce-engine || true)"
 UPTIME="$(uptime -p)"
 TEMP="$(vcgencmd measure_temp | grep -oP '[\d.]+')"
 
-MSG="Nonce Engine weekly report, week ${WEEK}
+MSG="Nonce Engine weekly report, week ${WEEK}, ${YEAR}
 
 Status: ${STATUS}
 Uptime: ${UPTIME#up }
