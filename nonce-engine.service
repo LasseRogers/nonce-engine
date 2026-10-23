@@ -1,0 +1,15 @@
+[Unit]
+Description=Nonce Engine solo Bitcoin miner
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=lasr
+EnvironmentFile=/home/lasr/nonce-engine/config
+ExecStart=/home/lasr/cpuminer/minerd -a sha256d -o ${POOL_URL} -u ${BTC_ADDRESS} -p x -t ${THREADS}
+Restart=always
+RestartSec=30
+Nice=10
+
+[Install]
+WantedBy=multi-user.target
