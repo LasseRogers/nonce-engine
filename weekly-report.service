@@ -1,0 +1,9 @@
+[Unit]
+Description=Nonce Engine weekly Telegram report
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=lasr
+ExecStart=/home/lasr/nonce-engine/weekly-report.sh
