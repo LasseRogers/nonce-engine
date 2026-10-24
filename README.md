@@ -6,3 +6,12 @@ Raspberry Pi 2 solo-mining Bitcoin.
 - `weekly-report.sh` + `.timer`: Telegram report every Sunday 10:00
 - log2ram: keeps logs in RAM to reduce SD card wear
 - `config.example`: copy to `config` and fill in (ignored by git)
+
+## Commands
+
+```bash
+journalctl -u nonce-engine -f       # watch the miner live
+sudo systemctl stop nonce-engine    # pause mining
+sudo systemctl start nonce-engine   # resume mining
+vcgencmd measure_temp               # check the temperature
+```
