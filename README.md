@@ -14,4 +14,6 @@ journalctl -u nonce-engine -f       # watch the miner live
 sudo systemctl stop nonce-engine    # pause mining
 sudo systemctl start nonce-engine   # resume mining
 vcgencmd measure_temp               # check the temperature
+./nonce_trace.py                    # watch the mining loop step by step
+./nonce_trace.py 0.05               # same, faster
 ```
