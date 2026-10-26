@@ -14,6 +14,7 @@ WEEK="$(date +%V)"
 YEAR="$(date +%G)"
 STATUS="$(systemctl is-active nonce-engine || true)"
 UPTIME="$(uptime -p)"
+
 # vcgencmd is Pi only, fall back to the kernel sensor
 if command -v vcgencmd > /dev/null; then
   TEMP="$(vcgencmd measure_temp | grep -oP '[\d.]+') °C"
@@ -22,6 +23,7 @@ elif [[ -r /sys/class/thermal/thermal_zone0/temp ]]; then
 else
   TEMP="n/a"
 fi
+
 MSG="Nonce Engine weekly report, week ${WEEK}, ${YEAR}
 
 Status: ${STATUS}
