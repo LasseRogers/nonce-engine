@@ -7,8 +7,8 @@ BTC_ADDRESS=bc1qyouraddresshere
 # Solo mining pool
 POOL_URL=stratum+tcp://solo.ckpool.org:3333
 
-# Number of CPU threads to mine with (the Pi 2 has 4)
-THREADS=3
+# Number of CPU threads to mine with. Leave blank to use all cores but one (3 on a Pi 2)
+THREADS=
 
 # Telegram weekly report (filled in later)
 TELEGRAM_BOT_TOKEN=

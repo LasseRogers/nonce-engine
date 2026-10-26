@@ -14,8 +14,14 @@ WEEK="$(date +%V)"
 YEAR="$(date +%G)"
 STATUS="$(systemctl is-active nonce-engine || true)"
 UPTIME="$(uptime -p)"
-TEMP="$(vcgencmd measure_temp | grep -oP '[\d.]+')"
-
+# vcgencmd is Pi only, fall back to the kernel sensor
+if command -v vcgencmd > /dev/null; then
+  TEMP="$(vcgencmd measure_temp | grep -oP '[\d.]+') °C"
+elif [[ -r /sys/class/thermal/thermal_zone0/temp ]]; then
+  TEMP="$(awk '{printf "%.1f", $1/1000}' /sys/class/thermal/thermal_zone0/temp) °C"
+else
+  TEMP="n/a"
+fi
 MSG="Nonce Engine weekly report, week ${WEEK}, ${YEAR}
 
 Status: ${STATUS}
@@ -23,7 +29,7 @@ Uptime: ${UPTIME#up }
 Guesses this week: ${TOTAL} billion
 Average speed: ${SPEED} kH/s
 Accepted near-misses: ${ACCEPTED}
-Temperature: ${TEMP} °C
+Temperature: ${TEMP}
 
 Still searching for that one lucky nonce."
 

@@ -5,5 +5,5 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-User=lasr
-ExecStart=/home/lasr/nonce-engine/weekly-report.sh
+User={{USER}}
+ExecStart={{DIR}}/weekly-report.sh

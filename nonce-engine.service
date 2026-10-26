@@ -4,9 +4,9 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-User=lasr
-EnvironmentFile=/home/lasr/nonce-engine/config
-ExecStart=/home/lasr/cpuminer/minerd -a sha256d -o ${POOL_URL} -u ${BTC_ADDRESS} -p x -t ${THREADS}
+User={{USER}}
+EnvironmentFile={{DIR}}/config
+ExecStart={{MINER}} -a sha256d -o ${POOL_URL} -u ${BTC_ADDRESS} -p x -t ${THREADS}
 Restart=always
 RestartSec=30
 Nice=10
